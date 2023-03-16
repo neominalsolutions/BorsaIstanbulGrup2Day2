@@ -1,0 +1,25 @@
+
+Gördüklerimiz
+
+  
+
+   // @Input()
+   // @Output()
+   // ngOnChanges() Hook
+   // afterViewInit() Hook
+   // [atributename] // attribute binding (@Input())
+   // (eventname)     // event binding
+   // {{properyName}} // property binding
+   // <input #inpt     // template ref
+   // $any,$event      // template servisler
+   // Builtin-directive [style,class,ngStyle,ngClass,hidden,*ngIf,*ngFor,*ngSwicth]
+   // Template Directive ng-template, ng-content, ng-container
+   // ViewChild,ContentChild decarator kullanımı
+   // HTMLInputElement,ElementRef, HTMLElement kullanımı
+   // ChangeDetectorRef, OnDefault,onPush, detectChanges method
+   // Promise then,catch,finally, async/await try,catch,finally, Promise.all
+   // Observable, subscription, unsubscribe, asyncPipe,jsonPipe, 
+   // @Inject, @Injectable({providedIn:'root'}), Providers (useClass)
+
+ 
+

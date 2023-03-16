@@ -1,0 +1,25 @@
+<!-- {{todos | json}} -->
+
+
+<div style="width:100%">
+  <ul style="width:45%;display:inline-block;">
+    <li *ngFor="let item of todos">
+      <span [style.color]="item.completed ? 'green':'red' ">
+        {{item.title}}
+      </span>
+    </li>
+  </ul>
+
+
+  <!-- jsonString olarak todos bilgisini yazdırır -->
+
+  <!-- | async ile veriyi senkronlaştırıyor. async ile subscribe işlemi oluyor. -->
+  <ul style="width:45%;display:inline-block;">
+    <li *ngFor="let item of todos$ | async">
+      <span [style.color]="item.completed ? 'blue':'gray' ">
+        {{item.title | uppercase}}
+      </span>
+    </li>
+  </ul>
+
+</div>

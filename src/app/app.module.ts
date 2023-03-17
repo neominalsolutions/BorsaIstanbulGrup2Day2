@@ -11,6 +11,7 @@ import { AboutComponent } from './providers/about/about.component';
 import localeTr from '@angular/common/locales/tr';
 import localeDeu from '@angular/common/locales/de';
 import { registerLocaleData } from '@angular/common';
+import { RxjsOperatorsComponent } from './rxjs/rxjs-operators/rxjs-operators.component';
 
 registerLocaleData(localeTr);
 registerLocaleData(localeDeu);
@@ -22,6 +23,7 @@ registerLocaleData(localeDeu);
     TodoComponent,
     HomeComponent,
     AboutComponent,
+    RxjsOperatorsComponent,
   ],
   imports: [BrowserModule, HttpClientModule], // http işlemlerini yöneten module
   providers: [

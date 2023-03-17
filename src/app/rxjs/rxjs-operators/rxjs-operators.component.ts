@@ -11,6 +11,8 @@ import {
   interval,
   map,
   merge,
+  mergeMap,
+  mergeMapTo,
   of,
   retry,
   tap,
@@ -85,15 +87,20 @@ export class RxjsOperatorsComponent implements OnInit {
     const data$ = from(
       fetch('https://jsonplaceholder.typicode.com/todos')
     ).pipe(
+      // json serialize işlemi yaptık)
+      mergeMap((data: any) => {
+        return data.json();
+      }),
       tap((data: any) => {
         // auditleme yada bir eylem yapmamız için veriyi yakalırız.
         console.log('data-stream', data);
         localStorage.setItem('todos', data);
         // loader service çalıştırılması veya notify işlemi
-        return data.json(); // json serialize işlemi yaptık
+
+        return data;
       }),
       map((data: any) => {
-        console.log('map-stream', data);
+        console.log('data-stream', data);
         // veri üzerinde bir maniplasyon yapmamızı sağlayan bir teknik
         // data üzerinde bir filtereleme yaptık
         const res = data.filter((x: any) => x.completed == true);
@@ -105,9 +112,11 @@ export class RxjsOperatorsComponent implements OnInit {
           response: res,
         };
 
-        return throwError(() => 'throw error'); // js deki hata fırlatma yönteminin rxJs tarafındaki hali
+        console.log('filtred-response', response);
 
-        // return response;
+        // return throwError(() => 'throw error'); // js deki hata fırlatma yönteminin rxJs tarafındaki hali
+
+        return response;
       }),
       catchError((err) => {
         // err response yerine kendi hata mesaj response verebilir.
@@ -122,17 +131,17 @@ export class RxjsOperatorsComponent implements OnInit {
       })
     );
 
-    // data$.subscribe({
-    //   next: (response) => {
-    //     console.log('response', response);
-    //   },
-    //   error: (err) => {
-    //     // hatayı yakaladığımız kısım
-    //   },
-    //   complete() {
-    //     // akış tammalanınca yapılacak işlemler.
-    //   },
-    // });
+    data$.subscribe({
+      next: (response) => {
+        console.log('response', response);
+      },
+      error: (err) => {
+        // hatayı yakaladığımız kısım
+      },
+      complete() {
+        // akış tammalanınca yapılacak işlemler.
+      },
+    });
 
     // birden fazla api üzerinden veri çekmemizi sağlayan bir yöntem
     forkJoin({
